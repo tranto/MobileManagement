@@ -12,6 +12,7 @@
 
 - (void)dealloc
 {
+    SAFE_RELEASE(_mainNav);
     [_window release];
     [super dealloc];
 }

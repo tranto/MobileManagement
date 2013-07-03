@@ -1,0 +1,14 @@
+//
+//  APIManagement.h
+//  Mobile Management
+//
+//  Created by TranTo on 7/3/13.
+//  Copyright (c) 2013 TranTo. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "GeneralDefinition.h"
+@interface APIManagement : NSObject
+
++ (NSString *)updateProductInfo;
+@end

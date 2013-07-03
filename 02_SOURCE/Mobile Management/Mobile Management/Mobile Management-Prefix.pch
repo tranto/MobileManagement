@@ -13,4 +13,5 @@
     #import <Foundation/Foundation.h>   
     #import "Inspiration_Definition.h"
     #import "Inspiration_FunctionHelper.h"
+    #import "GeneralDefinition.h"
 #endif

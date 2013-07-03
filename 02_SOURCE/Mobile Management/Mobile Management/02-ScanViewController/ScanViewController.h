@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZXingWidgetController.h"
 
-@interface ScanViewController : UIViewController
+@interface ScanViewController : UIViewController<ZXingDelegate>
 - (IBAction)goToMenu:(id)sender;
 
 @end
