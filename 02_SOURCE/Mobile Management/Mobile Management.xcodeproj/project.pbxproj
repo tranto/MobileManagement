@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B10AE62178619D000E8A8EC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B10AE61178619D000E8A8EC /* CFNetwork.framework */; };
+		7B10AE64178619DD00E8A8EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B10AE63178619DD00E8A8EC /* SystemConfiguration.framework */; };
+		7B10AE66178619EC00E8A8EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B10AE65178619EC00E8A8EC /* MobileCoreServices.framework */; };
+		7B10AE68178619FE00E8A8EC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B10AE67178619FE00E8A8EC /* libz.dylib */; };
 		7B7034111782352200CEF168 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B70340F1782352200CEF168 /* AddressBook.framework */; };
 		7B7034121782352200CEF168 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7034101782352200CEF168 /* AddressBookUI.framework */; };
 		7B7034141782353500CEF168 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7034131782353500CEF168 /* AudioToolbox.framework */; };
@@ -76,6 +80,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B10AE61178619D000E8A8EC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7B10AE63178619DD00E8A8EC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7B10AE65178619EC00E8A8EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		7B10AE67178619FE00E8A8EC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7B7034011782347500CEF168 /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = SOURCE_ROOT; };
 		7B70340F1782352200CEF168 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		7B7034101782352200CEF168 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -147,6 +155,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B10AE68178619FE00E8A8EC /* libz.dylib in Frameworks */,
+				7B10AE66178619EC00E8A8EC /* MobileCoreServices.framework in Frameworks */,
+				7B10AE64178619DD00E8A8EC /* SystemConfiguration.framework in Frameworks */,
+				7B10AE62178619D000E8A8EC /* CFNetwork.framework in Frameworks */,
 				7B7034171782356700CEF168 /* libZXingWidget.a in Frameworks */,
 				7B7034161782355D00CEF168 /* libiconv.dylib in Frameworks */,
 				9AC49CDE1780CD2B00197B12 /* AVFoundation.framework in Frameworks */,
@@ -256,6 +268,10 @@
 		9AD45CD8177D760F00EFDD27 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7B10AE67178619FE00E8A8EC /* libz.dylib */,
+				7B10AE65178619EC00E8A8EC /* MobileCoreServices.framework */,
+				7B10AE63178619DD00E8A8EC /* SystemConfiguration.framework */,
+				7B10AE61178619D000E8A8EC /* CFNetwork.framework */,
 				7B7034151782355D00CEF168 /* libiconv.dylib */,
 				7B7034131782353500CEF168 /* AudioToolbox.framework */,
 				7B70340F1782352200CEF168 /* AddressBook.framework */,
