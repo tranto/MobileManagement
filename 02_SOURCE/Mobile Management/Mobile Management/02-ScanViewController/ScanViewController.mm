@@ -8,6 +8,7 @@
 
 #import "ScanViewController.h"
 #import <MultiFormatReader.h>
+#import "APIManagement.h"
 @interface ScanViewController ()
 
 @end
@@ -27,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   
 }
 
 - (void)didReceiveMemoryWarning

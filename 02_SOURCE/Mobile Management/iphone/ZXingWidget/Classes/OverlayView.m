@@ -183,7 +183,11 @@ static const CGFloat kLicenseButtonPadding = 10;
 - (void)drawRect:(CGRect)rect {
 	[super drawRect:rect];
   if (displayedMessage == nil) {
-    self.displayedMessage = NSLocalizedStringWithDefaultValue(@"OverlayView displayed message", nil, [NSBundle mainBundle], @"Place a barcode inside the viewfinder rectangle to scan it.", @"Place a barcode inside the viewfinder rectangle to scan it.");
+      /*!
+       @note : TriHPM
+       */
+//    self.displayedMessage = NSLocalizedStringWithDefaultValue(@"OverlayView displayed message", nil, [NSBundle mainBundle], @"Place a barcode inside the viewfinder rectangle to scan it.", @"Place a barcode inside the viewfinder rectangle to scan it.");
+      self.displayedMessage = NSLocalizedStringWithDefaultValue(@"", nil, [NSBundle mainBundle], @"", @"");
   }
 	CGContextRef c = UIGraphicsGetCurrentContext();
   
@@ -226,26 +230,29 @@ static const CGFloat kLicenseButtonPadding = 10;
 		CGContextStrokePath(c);
 	}
 	if( nil != _points ) {
-		CGFloat blue[4] = {0.0f, 1.0f, 0.0f, 1.0f};
-		CGContextSetStrokeColor(c, blue);
-		CGContextSetFillColor(c, blue);
-		if (oneDMode) {
-			CGPoint val1 = [self map:[[_points objectAtIndex:0] CGPointValue]];
-			CGPoint val2 = [self map:[[_points objectAtIndex:1] CGPointValue]];
-			CGContextMoveToPoint(c, offset, val1.x);
-			CGContextAddLineToPoint(c, offset, val2.x);
-			CGContextStrokePath(c);
-		}
-		else {
-			CGRect smallSquare = CGRectMake(0, 0, 10, 10);
-			for( NSValue* value in _points ) {
-				CGPoint point = [self map:[value CGPointValue]];
-				smallSquare.origin = CGPointMake(
-                                         cropRect.origin.x + point.x - smallSquare.size.width / 2,
-                                         cropRect.origin.y + point.y - smallSquare.size.height / 2);
-				[self drawRect:smallSquare inContext:c];
-			}
-		}
+        /*!
+         @note : TriHPM -> bo cai khung mau blue khi detect xong
+         */
+//		CGFloat blue[4] = {0.0f, 1.0f, 0.0f, 1.0f};
+//		CGContextSetStrokeColor(c, blue);
+//		CGContextSetFillColor(c, blue);
+//		if (oneDMode) {
+//			CGPoint val1 = [self map:[[_points objectAtIndex:0] CGPointValue]];
+//			CGPoint val2 = [self map:[[_points objectAtIndex:1] CGPointValue]];
+//			CGContextMoveToPoint(c, offset, val1.x);
+//			CGContextAddLineToPoint(c, offset, val2.x);
+//			CGContextStrokePath(c);
+//		}
+//		else {
+//			CGRect smallSquare = CGRectMake(0, 0, 10, 10);
+//			for( NSValue* value in _points ) {
+//				CGPoint point = [self map:[value CGPointValue]];
+//				smallSquare.origin = CGPointMake(
+//                                         cropRect.origin.x + point.x - smallSquare.size.width / 2,
+//                                         cropRect.origin.y + point.y - smallSquare.size.height / 2);
+//				[self drawRect:smallSquare inContext:c];
+//			}
+//		}
 	}
 }
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B10AE62178619D000E8A8EC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B10AE61178619D000E8A8EC /* CFNetwork.framework */; };
+		7B10AE64178619DD00E8A8EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B10AE63178619DD00E8A8EC /* SystemConfiguration.framework */; };
+		7B10AE66178619EC00E8A8EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B10AE65178619EC00E8A8EC /* MobileCoreServices.framework */; };
+		7B10AE68178619FE00E8A8EC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B10AE67178619FE00E8A8EC /* libz.dylib */; };
 		7B7034111782352200CEF168 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B70340F1782352200CEF168 /* AddressBook.framework */; };
 		7B7034121782352200CEF168 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7034101782352200CEF168 /* AddressBookUI.framework */; };
 		7B7034141782353500CEF168 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7034131782353500CEF168 /* AudioToolbox.framework */; };
@@ -25,6 +29,9 @@
 		9A36E92217839F1F00D05282 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A36E91917839F1F00D05282 /* Reachability.m */; };
 		9A36E9251783A2DE00D05282 /* ProductViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A36E9241783A2DE00D05282 /* ProductViewCell.m */; };
 		9A36E9271783A2F900D05282 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A36E9261783A2F900D05282 /* ProductViewCell.xib */; };
+		9A4E891F178BD98800F4D647 /* TBXML+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E891A178BD98800F4D647 /* TBXML+Compression.m */; };
+		9A4E8920178BD98800F4D647 /* TBXML+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E891C178BD98800F4D647 /* TBXML+HTTP.m */; };
+		9A4E8921178BD98800F4D647 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E891E178BD98800F4D647 /* TBXML.m */; };
 		9AC49CDE1780CD2B00197B12 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC49CDD1780CD2B00197B12 /* AVFoundation.framework */; };
 		9AC49CE01780CD3C00197B12 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC49CDF1780CD3C00197B12 /* CoreMedia.framework */; };
 		9AC49CE21780CD4800197B12 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC49CE11780CD4800197B12 /* CoreVideo.framework */; };
@@ -76,6 +83,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B10AE61178619D000E8A8EC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7B10AE63178619DD00E8A8EC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7B10AE65178619EC00E8A8EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		7B10AE67178619FE00E8A8EC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7B7034011782347500CEF168 /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = SOURCE_ROOT; };
 		7B70340F1782352200CEF168 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		7B7034101782352200CEF168 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -110,6 +121,12 @@
 		9A36E9231783A2DE00D05282 /* ProductViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductViewCell.h; sourceTree = "<group>"; };
 		9A36E9241783A2DE00D05282 /* ProductViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductViewCell.m; sourceTree = "<group>"; };
 		9A36E9261783A2F900D05282 /* ProductViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductViewCell.xib; sourceTree = "<group>"; };
+		9A4E8919178BD98800F4D647 /* TBXML+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBXML+Compression.h"; sourceTree = "<group>"; };
+		9A4E891A178BD98800F4D647 /* TBXML+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBXML+Compression.m"; sourceTree = "<group>"; };
+		9A4E891B178BD98800F4D647 /* TBXML+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBXML+HTTP.h"; sourceTree = "<group>"; };
+		9A4E891C178BD98800F4D647 /* TBXML+HTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBXML+HTTP.m"; sourceTree = "<group>"; };
+		9A4E891D178BD98800F4D647 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
+		9A4E891E178BD98800F4D647 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXML.m; sourceTree = "<group>"; };
 		9AC49CDD1780CD2B00197B12 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9AC49CDF1780CD3C00197B12 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		9AC49CE11780CD4800197B12 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -147,6 +164,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B10AE68178619FE00E8A8EC /* libz.dylib in Frameworks */,
+				7B10AE66178619EC00E8A8EC /* MobileCoreServices.framework in Frameworks */,
+				7B10AE64178619DD00E8A8EC /* SystemConfiguration.framework in Frameworks */,
+				7B10AE62178619D000E8A8EC /* CFNetwork.framework in Frameworks */,
 				7B7034171782356700CEF168 /* libZXingWidget.a in Frameworks */,
 				7B7034161782355D00CEF168 /* libiconv.dylib in Frameworks */,
 				9AC49CDE1780CD2B00197B12 /* AVFoundation.framework in Frameworks */,
@@ -236,6 +257,19 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		9A4E8918178BD98800F4D647 /* TBXML */ = {
+			isa = PBXGroup;
+			children = (
+				9A4E8919178BD98800F4D647 /* TBXML+Compression.h */,
+				9A4E891A178BD98800F4D647 /* TBXML+Compression.m */,
+				9A4E891B178BD98800F4D647 /* TBXML+HTTP.h */,
+				9A4E891C178BD98800F4D647 /* TBXML+HTTP.m */,
+				9A4E891D178BD98800F4D647 /* TBXML.h */,
+				9A4E891E178BD98800F4D647 /* TBXML.m */,
+			);
+			path = TBXML;
+			sourceTree = "<group>";
+		};
 		9AD45CCD177D760F00EFDD27 = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +290,10 @@
 		9AD45CD8177D760F00EFDD27 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7B10AE67178619FE00E8A8EC /* libz.dylib */,
+				7B10AE65178619EC00E8A8EC /* MobileCoreServices.framework */,
+				7B10AE63178619DD00E8A8EC /* SystemConfiguration.framework */,
+				7B10AE61178619D000E8A8EC /* CFNetwork.framework */,
 				7B7034151782355D00CEF168 /* libiconv.dylib */,
 				7B7034131782353500CEF168 /* AudioToolbox.framework */,
 				7B70340F1782352200CEF168 /* AddressBook.framework */,
@@ -335,6 +373,7 @@
 		9AD45D2B177DA11400EFDD27 /* Ulities */ = {
 			isa = PBXGroup;
 			children = (
+				9A4E8918178BD98800F4D647 /* TBXML */,
 				9A36E90017839F1F00D05282 /* ASIHttpRequest */,
 				7B7034011782347500CEF168 /* ZXingWidget.xcodeproj */,
 				9AD45D2C177DA11400EFDD27 /* Inspiration_Definition.h */,
@@ -466,6 +505,9 @@
 				9A36E92117839F1F00D05282 /* ASINetworkQueue.m in Sources */,
 				9A36E92217839F1F00D05282 /* Reachability.m in Sources */,
 				9A36E9251783A2DE00D05282 /* ProductViewCell.m in Sources */,
+				9A4E891F178BD98800F4D647 /* TBXML+Compression.m in Sources */,
+				9A4E8920178BD98800F4D647 /* TBXML+HTTP.m in Sources */,
+				9A4E8921178BD98800F4D647 /* TBXML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "ScanViewController.h"
 #import "BookingViewController.h"
 #import "ZXingWidgetController.h"
+#import "APIManagement.h"
 
 @interface MenuViewController : UIViewController<ZXingDelegate>{
     

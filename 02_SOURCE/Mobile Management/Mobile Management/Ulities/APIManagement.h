@@ -10,5 +10,6 @@
 #import "GeneralDefinition.h"
 @interface APIManagement : NSObject
 
-+ (NSString *)updateProductInfo;
++ (NSString *)updateProductInfo:(NSString *)productIds withNumber:(NSString *)numberItemList withStoreName:(NSString *)storeName;
++ (BOOL)parseXML:(NSString *)xmlString;
 @end

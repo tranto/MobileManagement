@@ -94,7 +94,7 @@ static MenuViewController *gInstance = nil;
 }
 
 - (IBAction)goToScanView:(id)sender {
-    
+ [APIManagement updateProductInfo:@"iphone5|iphone4" withNumber:@"1|1" withStoreName:@"store_04"];    
     ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
     MultiFormatReader* qrcodeReader = [[MultiFormatReader alloc] init];
     NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];

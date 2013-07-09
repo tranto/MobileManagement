@@ -10,9 +10,11 @@
 #define Mobile_Management_GeneralDefinition_h
 
 #define User_Default_First_Time_Installation_Key  @"FIRST_TIME"  
-#define Dummy_Data 0
+#define Dummy_Data          0
 
 #pragma mark - URL HEADER
-#define Header_Update_Product_List_Info @"http://tenhost.com/outside/updateQuantity.php?"
-
+#define Header_Update_Product_List_Info @"http://phukienphuonganh.net/outside/outside/updateQuantity.php?"
+#define ERROR_CODE          404
+#define SUCCESS_CODE        999
+#define XML_ELEMENT_NAME    @"codereturn"
 #endif
