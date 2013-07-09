@@ -28,7 +28,7 @@
 #endif
 
 @interface ZXingWidgetController : UIViewController<DecoderDelegate,
-                                                    CancelDelegate,
+                                                    CancelDelegate,UITableViewDataSource,UITableViewDelegate,
                                                     UINavigationControllerDelegate
 #if HAS_AVFF
                                                     , AVCaptureVideoDataOutputSampleBufferDelegate
@@ -53,6 +53,8 @@
                                                          @note : TriHPM custome
                                                          */
                                                         UIButton *_btBack;
+                                                        UITableView *_tbvData;
+                                                        NSMutableArray *_lstData;
 }
 
 #if HAS_AVFF

@@ -104,6 +104,9 @@
   [soundToPlay release];
   [overlayView release];
   [readers release];
+    [_btBack release];
+    [_tbvData release];
+    [_lstData release];
   [super dealloc];
 }
 
@@ -137,6 +140,32 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
+    /*!
+     @note : TriHPM Nhung cai init nay dang de o viewDidAppear neu de viewdidload thi khi push vao
+     se rat cham.
+     Nhung neu bo viewDidAppear khi load lai view se addSubView 1 lan nua.(***)
+     */
+    
+    [self initCapture];
+    [self.view addSubview:overlayView];
+    
+    [overlayView setPoints:nil];
+    wasCancelled = NO;
+    /*!
+     @note : TriHPM custome
+     */
+    _btBack = [[UIButton alloc] initWithFrame:CGRectMake(500, 50, 50, 30)];
+    [_btBack setBackgroundColor:[UIColor redColor]];
+    [_btBack setTitle:@"Back" forState:UIControlStateNormal];
+    [_btBack addTarget:self action:@selector(goToBack:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_btBack];
+    
+    _tbvData = [[UITableView alloc] initWithFrame:CGRectMake(0, HEIGHT_SCAN, 768, [[UIScreen mainScreen] bounds].size.height-HEIGHT_SCAN)];
+    [_tbvData setDataSource:self];
+    [_tbvData setDelegate:self];
+    [self.view addSubview:_tbvData];
+    
+    _lstData = [[NSMutableArray alloc] init];
     
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -157,25 +186,7 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
   decoding = YES;
-    /*!
-     @note : TriHPM Nhung cai init nay dang de o viewDidAppear neu de viewdidload thi khi push vao 
-     se rat cham.
-     Nhung neu bo viewDidAppear khi load lai view se addSubView 1 lan nua.(***)
-     */
-
-  [self initCapture];
-  [self.view addSubview:overlayView];
-  
-  [overlayView setPoints:nil];
-  wasCancelled = NO;
-    /*!
-     @note : TriHPM custome
-     */
-    _btBack = [[UIButton alloc] initWithFrame:CGRectMake(500, 800, 50, 30)];
-    [_btBack setBackgroundColor:[UIColor redColor]];
-    [_btBack setTitle:@"Back" forState:UIControlStateNormal];
-    [_btBack addTarget:self action:@selector(goToBack:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_btBack];
+   
 }
 - (void)goToBack:(id)sender
 {
@@ -303,13 +314,20 @@
   [self performSelector:@selector(notifyDelegate:) withObject:[[twoDResult text] copy] afterDelay:0.0];
   decoder.delegate = nil;
 }
-
+#pragma mark - Result
 - (void)notifyDelegate:(id)text {
   if (!isStatusBarHidden) [[UIApplication sharedApplication] setStatusBarHidden:NO];
   [delegate zxingController:self didScanResult:text];
+    [_lstData addObject:text];
+    [_tbvData reloadData];
+    [self performSelector:@selector(delayScan) withObject:nil afterDelay:0.5f];
   [text release];
 }
-
+- (void)delayScan
+{
+    decoding = !decoding;
+    
+}
 - (void)decoder:(Decoder *)decoder failedToDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset reason:(NSString *)reason {
   decoder.delegate = nil;
   [overlayView setPoints:nil];
@@ -421,9 +439,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     /*!
      @note : TriHPM decoding:// chi chup dc 1 lan duy nhat
      */
-//  if (!decoding) {
-//    return;
-//  }
+  if (!decoding) {
+    return;
+  }
   CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
   /*Lock the image buffer*/
   CVPixelBufferLockBaseAddress(imageBuffer,0); 
@@ -534,6 +552,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   }
 
 }
+
 #endif
 
 - (void)stopCapture {
@@ -573,7 +592,25 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   }
 #endif
 }
-
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_lstData count];
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 100, 50)];
+        [text setText:[NSString stringWithFormat:@"%@", [_lstData objectAtIndex:indexPath.row]]];
+        [cell.contentView addSubview:text];
+        [text release];
+    }
+    UILabel *tmpLabel = (UILabel*)[cell.contentView.subviews objectAtIndex:0];
+    [tmpLabel setText:[NSString stringWithFormat:@"%@", [_lstData objectAtIndex:indexPath.row]]];
+    return cell;
+}
 - (BOOL)torchIsOn {
 #if HAS_AVFF
   Class captureDeviceClass = NSClassFromString(@"AVCaptureDevice");
@@ -589,5 +626,4 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 #endif
   return NO;
 }
-
 @end
