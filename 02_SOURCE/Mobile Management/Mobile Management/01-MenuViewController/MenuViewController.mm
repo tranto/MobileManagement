@@ -126,7 +126,7 @@ static MenuViewController *gInstance = nil;
 #pragma mark - ZXingDelegate
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
-    DLog(@"Result : %@", result);
+    DLog(@"%@", result);
 }
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {

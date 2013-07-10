@@ -52,6 +52,7 @@
                                                         /*!
                                                          @note : TriHPM custome
                                                          */
+                                                        UILabel *_lbSumPrice;
                                                         UIButton *_btBack;
                                                         UITableView *_tbvData;
                                                         NSMutableArray *_lstData;

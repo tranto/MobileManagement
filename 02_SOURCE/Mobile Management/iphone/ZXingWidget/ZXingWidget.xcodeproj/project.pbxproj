@@ -189,6 +189,8 @@
 		3BAC39F017242E5D00473974 /* BigUnsignedInABase.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3BAC39E117242E5D00473974 /* BigUnsignedInABase.cc */; };
 		3BAC39F117242E5D00473974 /* BigUnsignedInABase.hh in Headers */ = {isa = PBXBuildFile; fileRef = 3BAC39E217242E5D00473974 /* BigUnsignedInABase.hh */; };
 		3BAC39F317242E5D00473974 /* NumberlikeArray.hh in Headers */ = {isa = PBXBuildFile; fileRef = 3BAC39E517242E5D00473974 /* NumberlikeArray.hh */; };
+		7BEA519D178E031400714000 /* ProductObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BEA519B178E031400714000 /* ProductObject.h */; };
+		7BEA519E178E031400714000 /* ProductObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEA519C178E031400714000 /* ProductObject.m */; };
 		AA747D9F0F9514B9006C5449 /* ZXingWidget_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ZXingWidget_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		E534594311987396000CB77F /* BarcodeFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E53458B511987396000CB77F /* BarcodeFormat.cpp */; };
@@ -507,6 +509,8 @@
 		3BAC39E117242E5D00473974 /* BigUnsignedInABase.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BigUnsignedInABase.cc; sourceTree = "<group>"; };
 		3BAC39E217242E5D00473974 /* BigUnsignedInABase.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BigUnsignedInABase.hh; sourceTree = "<group>"; };
 		3BAC39E517242E5D00473974 /* NumberlikeArray.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NumberlikeArray.hh; sourceTree = "<group>"; };
+		7BEA519B178E031400714000 /* ProductObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductObject.h; path = Classes/ProductObject.h; sourceTree = "<group>"; };
+		7BEA519C178E031400714000 /* ProductObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductObject.m; path = Classes/ProductObject.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* ZXingWidget_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXingWidget_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libZXingWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZXingWidget.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -731,6 +735,8 @@
 				E5345A00119876A5000CB77F /* Actions */,
 				E53459EF119876A5000CB77F /* ParsedResults */,
 				E53459D4119876A5000CB77F /* ResultParsers */,
+				7BEA519B178E031400714000 /* ProductObject.h */,
+				7BEA519C178E031400714000 /* ProductObject.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1352,6 +1358,7 @@
 				3BAC39EF17242E5D00473974 /* BigUnsigned.hh in Headers */,
 				3BAC39F117242E5D00473974 /* BigUnsignedInABase.hh in Headers */,
 				3BAC39F317242E5D00473974 /* NumberlikeArray.hh in Headers */,
+				7BEA519D178E031400714000 /* ProductObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1610,6 +1617,7 @@
 				3BAC39EC17242E5D00473974 /* BigIntegerUtils.cc in Sources */,
 				3BAC39EE17242E5D00473974 /* BigUnsigned.cc in Sources */,
 				3BAC39F017242E5D00473974 /* BigUnsignedInABase.cc in Sources */,
+				7BEA519E178E031400714000 /* ProductObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

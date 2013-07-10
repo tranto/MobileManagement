@@ -24,8 +24,8 @@
 #import "TwoDDecoderResult.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
-
 #import <AVFoundation/AVFoundation.h>
+#import "ProductObject.h"
 
 #define CAMERA_SCALAR 1.12412 // scalar = (480 / (2048 / 480))
 #define FIRST_TAKE_DELAY 1.0
@@ -160,7 +160,14 @@
     [_btBack addTarget:self action:@selector(goToBack:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btBack];
     
-    _tbvData = [[UITableView alloc] initWithFrame:CGRectMake(0, HEIGHT_SCAN, 768, [[UIScreen mainScreen] bounds].size.height-HEIGHT_SCAN)];
+    _lbSumPrice = [[UILabel alloc] initWithFrame:CGRectMake(600, 100, 150, 50)];
+    [_lbSumPrice setBackgroundColor:[UIColor yellowColor]];
+    [_lbSumPrice setText:@"$ 00"];
+    [_lbSumPrice setTextAlignment:NSTextAlignmentCenter];
+    [self.view addSubview:_lbSumPrice];
+    
+    _tbvData = [[UITableView alloc] initWithFrame:CGRectMake(0, HEIGHT_SCAN, WIDTH_MSCREEN, HEIGHT_MSCREEN-HEIGHT_SCAN)];
+    [_tbvData setBackgroundColor:[UIColor lightGrayColor]];
     [_tbvData setDataSource:self];
     [_tbvData setDelegate:self];
     [self.view addSubview:_tbvData];
@@ -318,9 +325,25 @@
 - (void)notifyDelegate:(id)text {
   if (!isStatusBarHidden) [[UIApplication sharedApplication] setStatusBarHidden:NO];
   [delegate zxingController:self didScanResult:text];
-    [_lstData addObject:text];
-    [_tbvData reloadData];
-    [self performSelector:@selector(delayScan) withObject:nil afterDelay:0.5f];
+    NSArray *resultPr = [text componentsSeparatedByString:@"\n"];
+    NSLog(@"%@",resultPr);
+    if ([resultPr count]==4) {
+        ProductObject *product = [self isItemExists:text];
+        if (!product) {
+            product = [[ProductObject alloc] init];
+            [product setQRCode:text];
+            [product setName:[resultPr objectAtIndex:0]];
+            [product setPrice:[resultPr objectAtIndex:3]];
+            product.quantum++;
+            [_lstData addObject:product];
+        }
+        else{
+            product.quantum++;
+            NSLog(@"Quan : %d", product.quantum);
+        }
+        [_tbvData reloadData];
+    }
+    [self performSelector:@selector(delayScan) withObject:nil afterDelay:DELAY_SCAN];
   [text release];
 }
 - (void)delayScan
@@ -592,6 +615,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   }
 #endif
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [_lstData count];
@@ -600,15 +627,71 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    ProductObject *item = [_lstData objectAtIndex:indexPath.row];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 100, 50)];
-        [text setText:[NSString stringWithFormat:@"%@", [_lstData objectAtIndex:indexPath.row]]];
-        [cell.contentView addSubview:text];
-        [text release];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
+        int xRatio = 0;
+        
+        UILabel *lbNo = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 50, 50)];
+        [lbNo setTag:1];
+        [lbNo setBackgroundColor:[UIColor blueColor]];
+        [lbNo setTextAlignment:NSTextAlignmentCenter];
+        [lbNo setText:[NSString stringWithFormat:@"%0.2d",indexPath.row + 1]];
+        [cell.contentView addSubview:lbNo];
+        
+        xRatio += CGRectGetWidth(lbNo.frame);
+        UILabel *lbQRCode = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 400, 50)];
+        [lbQRCode setTag:2];
+        [lbQRCode setBackgroundColor:[UIColor redColor]];
+        [lbQRCode setText:[NSString stringWithFormat:@"%@",item.qRCode]];
+        [cell.contentView addSubview:lbQRCode];
+        
+        xRatio += CGRectGetWidth(lbQRCode.frame);
+        UILabel *lbName = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 200, 50)];
+        [lbName setTag:3];
+        [lbName setBackgroundColor:[UIColor greenColor]];
+        [lbName setText:[NSString stringWithFormat:@"%@",item.name]];
+        [cell.contentView addSubview:lbName];
+        
+        xRatio += CGRectGetWidth(lbName.frame);
+        UILabel *lbQua = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 50, 50)];
+        [lbQua setTag:4];
+        [lbQua setBackgroundColor:[UIColor yellowColor]];
+        [lbQua setTextAlignment:NSTextAlignmentCenter];
+        [lbQua setText:[NSString stringWithFormat:@"%d",item.quantum]];
+        [cell.contentView addSubview:lbQua];
+        
+        xRatio += CGRectGetWidth(lbQua.frame);
+        UILabel *lbPrice = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, WIDTH_MSCREEN-xRatio, 50)];
+        [lbPrice setTag:5];
+        [lbPrice setBackgroundColor:[UIColor orangeColor]];
+        [lbPrice setText:[NSString stringWithFormat:@"%@",item.price]];
+        [cell.contentView addSubview:lbPrice];
+        
+        SAFE_RELEASE(lbNo);
+        SAFE_RELEASE(lbQRCode);
+        SAFE_RELEASE(lbName);
+        SAFE_RELEASE(lbQua);
+        SAFE_RELEASE(lbPrice);
+        
     }
-    UILabel *tmpLabel = (UILabel*)[cell.contentView.subviews objectAtIndex:0];
-    [tmpLabel setText:[NSString stringWithFormat:@"%@", [_lstData objectAtIndex:indexPath.row]]];
+    else{
+        UILabel *lbuNo = (UILabel*)[cell.contentView viewWithTag:1];
+        [lbuNo setText:[NSString stringWithFormat:@"%0.2d",indexPath.row + 1]];
+        
+        UILabel *lbuQRCode = (UILabel*)[cell.contentView viewWithTag:2];
+        [lbuQRCode setText:[NSString stringWithFormat:@"%@",item.qRCode]];
+        
+        UILabel *lbuName = (UILabel*)[cell.contentView viewWithTag:3];
+        [lbuName setText:[NSString stringWithFormat:@"%@",item.name]];
+        
+        UILabel *lbuQua = (UILabel*)[cell.contentView viewWithTag:4];
+        [lbuQua setText:[NSString stringWithFormat:@"%d",item.quantum]];
+        
+        UILabel *lbuPrice = (UILabel*)[cell.contentView viewWithTag:5];
+        [lbuPrice setText:[NSString stringWithFormat:@"%@",item.price]];
+    }
+    [self sumPriceOfProduct];
     return cell;
 }
 - (BOOL)torchIsOn {
@@ -625,5 +708,32 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   }
 #endif
   return NO;
+}
+-(ProductObject *)isItemExists:(NSString *)item
+{
+    for (ProductObject *tmp in _lstData) {
+        if ([tmp.qRCode isEqualToString:item]) {
+            return tmp;
+        }
+    }
+    return nil;
+}
+-(void)sumPriceOfProduct
+{
+    float sum = [[[_lbSumPrice.text componentsSeparatedByString:@"$"] lastObject] floatValue];
+    for (ProductObject *tmp in _lstData) {
+        NSArray *price = [tmp.price componentsSeparatedByString:@"$"];
+        if ([price count] > 1) {
+            float p = [[price lastObject] floatValue];
+            sum += p;
+        }
+    }
+    if (sum == 0) {
+        [_lbSumPrice setText:[NSString stringWithFormat:@"$ 00"]];
+    }
+    else{
+        [_lbSumPrice setText:[NSString stringWithFormat:@"$ %.2f", sum]];
+    }
+    
 }
 @end

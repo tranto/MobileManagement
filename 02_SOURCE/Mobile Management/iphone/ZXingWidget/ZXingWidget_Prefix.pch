@@ -8,3 +8,8 @@
 
 #define WIDTH_SCAN 192
 #define HEIGHT_SCAN 256
+#define SAFE_RELEASE(p)				{ if (p) { [(p) release]; (p) = nil;  } }
+#define MSCREEN [UIScreen mainScreen]
+#define WIDTH_MSCREEN [[UIScreen mainScreen] bounds].size.width
+#define HEIGHT_MSCREEN [[UIScreen mainScreen] bounds].size.height
+#define DELAY_SCAN 1.0f
