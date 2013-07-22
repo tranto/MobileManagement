@@ -6,8 +6,14 @@
     #import <Foundation/Foundation.h>
 #endif
 
+
 #define WIDTH_SCAN 192
 #define HEIGHT_SCAN 256
+
+#define WIDTH_SCAN_IPHONE 160
+#define HEIGHT_SCAN_IPHONE 240
+
+
 #define SAFE_RELEASE(p)				{ if (p) { [(p) release]; (p) = nil;  } }
 #define MSCREEN [UIScreen mainScreen]
 #define WIDTH_MSCREEN [[UIScreen mainScreen] bounds].size.width

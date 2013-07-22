@@ -76,10 +76,21 @@
     /*!
     @note : TriHPM custome
     */
-    OverlayView *theOverLayView = [[OverlayView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCAN, HEIGHT_SCAN)
-                                                       cancelEnabled:NO//showCancel
-                                                            oneDMode:oneDMode
-                                                         showLicense:shouldShowLicense];
+      
+  OverlayView *theOverLayView = nil;
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+     theOverLayView = [[OverlayView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCAN, HEIGHT_SCAN)
+                           cancelEnabled:NO//showCancel
+                                oneDMode:oneDMode
+                             showLicense:shouldShowLicense];
+  }
+  else{
+      theOverLayView = [[OverlayView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCAN_IPHONE, HEIGHT_SCAN_IPHONE)
+                                            cancelEnabled:NO//showCancel
+                                                 oneDMode:oneDMode
+                                              showLicense:shouldShowLicense];
+  }
+      
 //  [theOverLayView setBackgroundColor:[UIColor redColor]];
     [theOverLayView setDelegate:self];
     self.overlayView = theOverLayView;
@@ -154,25 +165,41 @@
     /*!
      @note : TriHPM custome
      */
-    _btBack = [[UIButton alloc] initWithFrame:CGRectMake(500, 50, 50, 30)];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        _btBack = [[UIButton alloc] initWithFrame:CGRectMake(500, 50, 50, 30)];
+    }
+    else{
+        _btBack = [[UIButton alloc] initWithFrame:CGRectMake(180, 50, 50, 30)];
+    }
     [_btBack setBackgroundColor:[UIColor redColor]];
     [_btBack setTitle:@"Back" forState:UIControlStateNormal];
     [_btBack addTarget:self action:@selector(goToBack:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btBack];
-    
-    _lbSumPrice = [[UILabel alloc] initWithFrame:CGRectMake(600, 100, 150, 50)];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        _lbSumPrice = [[UILabel alloc] initWithFrame:CGRectMake(600, 100, 150, 50)];
+    }
+    else{
+        _lbSumPrice = [[UILabel alloc] initWithFrame:CGRectMake(180, 100, 100, 50)];
+    }
     [_lbSumPrice setBackgroundColor:[UIColor yellowColor]];
     [_lbSumPrice setText:@"$ 00"];
     [_lbSumPrice setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:_lbSumPrice];
-    
-    _tbvData = [[UITableView alloc] initWithFrame:CGRectMake(0, HEIGHT_SCAN, WIDTH_MSCREEN, HEIGHT_MSCREEN-HEIGHT_SCAN)];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        _tbvData = [[UITableView alloc] initWithFrame:CGRectMake(0, HEIGHT_SCAN, WIDTH_MSCREEN, HEIGHT_MSCREEN-HEIGHT_SCAN)];
+    }
+    else{
+        _tbvData = [[UITableView alloc] initWithFrame:CGRectMake(0, HEIGHT_SCAN_IPHONE, WIDTH_MSCREEN, HEIGHT_MSCREEN-HEIGHT_SCAN_IPHONE)];
+    }
     [_tbvData setBackgroundColor:[UIColor lightGrayColor]];
     [_tbvData setDataSource:self];
     [_tbvData setDelegate:self];
     [self.view addSubview:_tbvData];
     
+
     _lstData = [[NSMutableArray alloc] init];
+    
+    
     
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -446,7 +473,12 @@ static bool isIPad() {
      @note : TriHPM set frame
      */
 //  self.prevLayer.frame = self.view.bounds;
-    [self.prevLayer setFrame:CGRectMake(0, 0, WIDTH_SCAN, HEIGHT_SCAN)];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self.prevLayer setFrame:CGRectMake(0, 0, WIDTH_SCAN, HEIGHT_SCAN)];
+    }
+    else{
+        [self.prevLayer setFrame:CGRectMake(0, 0, WIDTH_SCAN_IPHONE, HEIGHT_SCAN_IPHONE)];
+    }
   self.prevLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
   [self.view.layer addSublayer: self.prevLayer];
 
@@ -632,7 +664,13 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
         int xRatio = 0;
         
-        UILabel *lbNo = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 50, 50)];
+        UILabel *lbNo = nil;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            lbNo = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 50, 50)];
+        }
+        else{
+            lbNo = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 50, 50)];
+        }
         [lbNo setTag:1];
         [lbNo setBackgroundColor:[UIColor blueColor]];
         [lbNo setTextAlignment:NSTextAlignmentCenter];
@@ -640,21 +678,39 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         [cell.contentView addSubview:lbNo];
         
         xRatio += CGRectGetWidth(lbNo.frame);
-        UILabel *lbQRCode = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 400, 50)];
+        UILabel *lbQRCode = nil;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            lbQRCode = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 400, 50)];
+        }
+        else {
+            lbQRCode = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 60, 50)];
+        }
         [lbQRCode setTag:2];
         [lbQRCode setBackgroundColor:[UIColor redColor]];
         [lbQRCode setText:[NSString stringWithFormat:@"%@",item.qRCode]];
         [cell.contentView addSubview:lbQRCode];
         
         xRatio += CGRectGetWidth(lbQRCode.frame);
-        UILabel *lbName = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 200, 50)];
+        UILabel *lbName = nil;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            lbName = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 200, 50)];
+        }
+        else {
+            lbName = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 70, 50)];
+        }
         [lbName setTag:3];
         [lbName setBackgroundColor:[UIColor greenColor]];
         [lbName setText:[NSString stringWithFormat:@"%@",item.name]];
         [cell.contentView addSubview:lbName];
         
         xRatio += CGRectGetWidth(lbName.frame);
-        UILabel *lbQua = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 50, 50)];
+        UILabel *lbQua = nil;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            lbQua = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 50, 50)];
+        }
+        else {
+            lbQua = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, 50, 50)];
+        }
         [lbQua setTag:4];
         [lbQua setBackgroundColor:[UIColor yellowColor]];
         [lbQua setTextAlignment:NSTextAlignmentCenter];
@@ -662,7 +718,13 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         [cell.contentView addSubview:lbQua];
         
         xRatio += CGRectGetWidth(lbQua.frame);
-        UILabel *lbPrice = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, WIDTH_MSCREEN-xRatio, 50)];
+        UILabel *lbPrice = nil;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            lbPrice = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, WIDTH_MSCREEN-xRatio, 50)];
+        }
+        else {
+            lbPrice = [[UILabel alloc] initWithFrame:CGRectMake(xRatio, 0, WIDTH_MSCREEN-xRatio, 50)];
+        }
         [lbPrice setTag:5];
         [lbPrice setBackgroundColor:[UIColor orangeColor]];
         [lbPrice setText:[NSString stringWithFormat:@"%@",item.price]];

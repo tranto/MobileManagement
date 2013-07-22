@@ -17,6 +17,7 @@
 		7B7034161782355D00CEF168 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7034151782355D00CEF168 /* libiconv.dylib */; };
 		7B7034171782356700CEF168 /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B70340A1782347600CEF168 /* libZXingWidget.a */; };
 		7BBE3F111783092600E24225 /* beep-beep.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7BBE3F101783092600E24225 /* beep-beep.aiff */; };
+		7BF9F34A179D8F9C00E0B142 /* MenuViewController_iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BF9F349179D8F9C00E0B142 /* MenuViewController_iphone.xib */; };
 		9A36E8FE17839CDA00D05282 /* APIManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A36E8FD17839CDA00D05282 /* APIManagement.m */; };
 		9A36E91A17839F1F00D05282 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A36E90317839F1F00D05282 /* ASIAuthenticationDialog.m */; };
 		9A36E91B17839F1F00D05282 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A36E90617839F1F00D05282 /* ASIDataCompressor.m */; };
@@ -93,6 +94,7 @@
 		7B7034131782353500CEF168 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7B7034151782355D00CEF168 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		7BBE3F101783092600E24225 /* beep-beep.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "beep-beep.aiff"; sourceTree = "<group>"; };
+		7BF9F349179D8F9C00E0B142 /* MenuViewController_iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController_iphone.xib; sourceTree = "<group>"; };
 		9A36E8FB1783954F00D05282 /* GeneralDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralDefinition.h; sourceTree = "<group>"; };
 		9A36E8FC17839CDA00D05282 /* APIManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManagement.h; sourceTree = "<group>"; };
 		9A36E8FD17839CDA00D05282 /* APIManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManagement.m; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				9AD45D17177D894800EFDD27 /* MenuViewController.h */,
 				9AD45D18177D894800EFDD27 /* MenuViewController.mm */,
 				9AD45D19177D894800EFDD27 /* MenuViewController.xib */,
+				7BF9F349179D8F9C00E0B142 /* MenuViewController_iphone.xib */,
 			);
 			path = "01-MenuViewController";
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				9AD45CF0177D760F00EFDD27 /* Default-568h@2x.png in Resources */,
 				7BBE3F111783092600E24225 /* beep-beep.aiff in Resources */,
 				9A36E9271783A2F900D05282 /* ProductViewCell.xib in Resources */,
+				7BF9F34A179D8F9C00E0B142 /* MenuViewController_iphone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +598,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Nguyen (6377A6RM9B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Nguyen (6377A6RM9B)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Management/Mobile Management-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -602,6 +608,9 @@
 				);
 				INFOPLIST_FILE = "Mobile Management/Mobile Management-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4FAC2846-64D6-4ED7-92B2-7C657E785EE9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4FAC2846-64D6-4ED7-92B2-7C657E785EE9";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -611,6 +620,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Nguyen (6377A6RM9B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Nguyen (6377A6RM9B)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Management/Mobile Management-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -619,6 +630,9 @@
 				);
 				INFOPLIST_FILE = "Mobile Management/Mobile Management-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4FAC2846-64D6-4ED7-92B2-7C657E785EE9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4FAC2846-64D6-4ED7-92B2-7C657E785EE9";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

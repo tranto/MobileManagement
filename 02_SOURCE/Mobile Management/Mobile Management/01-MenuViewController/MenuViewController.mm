@@ -118,7 +118,13 @@ static MenuViewController *gInstance = nil;
 
 + (MenuViewController *)shareInstance{
     if (gInstance == nil) {
-        gInstance = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            gInstance = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+        }
+        else{
+            gInstance = [[MenuViewController alloc] initWithNibName:@"MenuViewController_iphone" bundle:nil];
+        }
+        
     }
     return gInstance;
 }
