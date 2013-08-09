@@ -43,6 +43,9 @@
   id<ZXingDelegate> delegate;
   BOOL wasCancelled;
   BOOL oneDMode;
+                                                        NSString *productName;
+                                                        NSString *numberOfPro;
+                                                        NSString *priceLst;
 #if HAS_AVFF
   AVCaptureSession *captureSession;
   AVCaptureVideoPreviewLayer *prevLayer;
@@ -54,8 +57,11 @@
                                                          */
                                                         UILabel *_lbSumPrice;
                                                         UIButton *_btBack;
+                                                        UIButton *_btSubmit;
                                                         UITableView *_tbvData;
-                                                        NSMutableArray *_lstData;
+                                                     
+                                                        UIImageView *_background;
+                                            NSMutableArray *_lstData;
 }
 
 #if HAS_AVFF
@@ -80,4 +86,5 @@
 @protocol ZXingDelegate
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result;
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller;
+- (void)zxingSubmitWithListId:(NSString *)listId withListQuan:(NSString *)lsQuantity;
 @end

@@ -32,17 +32,18 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     NSString *vUserDefault = [[NSUserDefaults standardUserDefaults] objectForKey:User_Default_First_Time_Installation_Key];
-    _btnBooking.enabled = NO;
-    _btnCheckout.enabled = NO;
+//    _btnBooking.enabled = NO;
+//    _btnCheckout.enabled = NO;
     if (vUserDefault) {
         
         _btnDone.titleLabel.text = @"Reset";
-       
-        _btnBooking.enabled = YES;
-        _btnCheckout.enabled = YES;
+        
+        _btnBooking.hidden = NO;
+        _btnCheckout.hidden = NO;
     }else{
         _btnDone.titleLabel.text = @"Done";
-        
+        _btnCheckout.hidden = YES;
+        _btnBooking.hidden = YES;
     }
 }
 
@@ -70,8 +71,8 @@ static MenuViewController *gInstance = nil;
             _btnDone.titleLabel.text = @"Done";
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:User_Default_First_Time_Installation_Key];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            _btnBooking.enabled = NO;
-            _btnCheckout.enabled = NO;
+            _btnBooking.hidden = YES;
+            _btnCheckout.hidden = YES;
         }else{
             @autoreleasepool {
                 if ([_btnDone.titleLabel.text isEqualToString:@"Done"]) {
@@ -80,11 +81,12 @@ static MenuViewController *gInstance = nil;
                      txtStorename.enabled = NO;
                     dispatch_async(dispatch_get_main_queue(), ^{
                          _btnDone.titleLabel.text = @"Reset";
+                       
                     });
                     
                 }
-                _btnBooking.enabled = YES;
-                _btnCheckout.enabled = YES;
+                _btnBooking.hidden = NO;
+                _btnCheckout.hidden = NO;
                
             }
        
@@ -94,7 +96,7 @@ static MenuViewController *gInstance = nil;
 }
 
 - (IBAction)goToScanView:(id)sender {
- [APIManagement updateProductInfo:@"iphone5|iphone4" withNumber:@"1|1" withStoreName:@"store_04"];    
+     
     ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
     MultiFormatReader* qrcodeReader = [[MultiFormatReader alloc] init];
     NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
@@ -111,9 +113,18 @@ static MenuViewController *gInstance = nil;
 }
 
 - (IBAction)goToBookingView:(id)sender {
-    BookingViewController *_bookViewController = [[BookingViewController alloc] initWithNibName:@"BookingViewController" bundle:nil];
-    [self.navigationController pushViewController:_bookViewController animated:YES];
-    SAFE_RELEASE(_bookViewController);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        BookingViewController *_bookViewController = [[BookingViewController alloc] initWithNibName:@"BookingViewController" bundle:nil];
+        [self.navigationController pushViewController:_bookViewController animated:YES];
+        SAFE_RELEASE(_bookViewController);
+    }
+    else{
+        BookingViewController *_bookViewController = [[BookingViewController alloc] initWithNibName:@"BookingViewController_iphone" bundle:nil];
+        [self.navigationController pushViewController:_bookViewController animated:YES];
+        SAFE_RELEASE(_bookViewController);
+
+    }
+ 
 }
 
 + (MenuViewController *)shareInstance{
@@ -137,6 +148,11 @@ static MenuViewController *gInstance = nil;
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
 
+}
+
+- (void)zxingSubmitWithListId:(NSString *)listId withListQuan:(NSString *)lsQuantity{
+    NSString *storeName = [[NSUserDefaults standardUserDefaults] objectForKey:User_Default_First_Time_Installation_Key];
+    [APIManagement updateProductInfo:listId withNumber:lsQuantity withStoreName:storeName];
 }
 
 - (void)dealloc {

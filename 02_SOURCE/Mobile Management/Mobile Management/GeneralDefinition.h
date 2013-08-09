@@ -11,7 +11,7 @@
 
 #define User_Default_First_Time_Installation_Key  @"FIRST_TIME"  
 #define Dummy_Data          0
-
+//Mtech.com.au/?route=product/gecout&id=1|2|3&total=2|3|1
 #pragma mark - URL HEADER
 #define Header_Update_Product_List_Info @"http://phukienphuonganh.net/outside/outside/updateQuantity.php?"
 #define ERROR_CODE          404

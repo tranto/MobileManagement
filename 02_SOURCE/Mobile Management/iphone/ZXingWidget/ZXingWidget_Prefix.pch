@@ -7,8 +7,8 @@
 #endif
 
 
-#define WIDTH_SCAN 192
-#define HEIGHT_SCAN 256
+#define WIDTH_SCAN 250//192
+#define HEIGHT_SCAN 250//256
 
 #define WIDTH_SCAN_IPHONE 160
 #define HEIGHT_SCAN_IPHONE 240

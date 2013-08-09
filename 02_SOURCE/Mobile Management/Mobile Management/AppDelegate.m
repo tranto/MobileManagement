@@ -14,7 +14,7 @@
 {
     SAFE_RELEASE(_mainNav);
     [_window release];
-    [super dealloc];
+    [super dealloc]; 
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -30,7 +30,9 @@
     return YES;
 }
 
-
+- (void)abdkfj{
+    
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
