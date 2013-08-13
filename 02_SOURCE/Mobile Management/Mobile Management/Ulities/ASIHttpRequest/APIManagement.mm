@@ -20,18 +20,19 @@
     }
     __block BOOL result = NO;
     NSString *strTemp = [NSString stringWithFormat:@"%@product_ids=%@&num=%@&shop_name=%@",Header_Update_Product_List_Info,productIds,numberItemList,storeName];
-    NSURL *resURL = [[NSURL alloc] initWithString:[strTemp stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *resURL = [[[NSURL alloc] initWithString:[strTemp stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] autorelease];
     DLog(@"URL %@",strTemp);
     __block ASIHTTPRequest *requestDataRes = [ASIHTTPRequest requestWithURL:resURL];
     [requestDataRes setCompletionBlock:^{
         NSString *data = [[NSString alloc] initWithData:[requestDataRes responseData] encoding:NSUTF8StringEncoding];
         result = [APIManagement parseXML:data];
         DLog(@"RESULT %@",data);
+        SAFE_RELEASE(data);
     }];
    
     [requestDataRes setFailedBlock:^{
-        NSError *error = [requestDataRes error];
-        DLog(@"ERRROR %@",error);
+        NSError *_error = [requestDataRes error];
+        DLog(@"ERRROR %@",_error);
         
     }];
     [requestDataRes startAsynchronous];
@@ -40,7 +41,7 @@
 
 + (BOOL)parseXML:(NSString *)xmlString{
     NSError *reqError = nil;
-    TBXML *xmlDoc = [TBXML newTBXMLWithXMLString:xmlString error:&reqError];
+    TBXML *xmlDoc = [[TBXML newTBXMLWithXMLString:xmlString error:&reqError] autorelease];
     if (!reqError) {
         TBXMLElement *root = [xmlDoc rootXMLElement];
 //        TBXMLElement *element = [TBXML childElementNamed:XML_ELEMENT_NAME parentElement:root];

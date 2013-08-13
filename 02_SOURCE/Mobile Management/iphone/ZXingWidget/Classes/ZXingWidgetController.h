@@ -56,12 +56,10 @@
                                                          @note : TriHPM custome
                                                          */
                                                         UILabel *_lbSumPrice;
-                                                        UIButton *_btBack;
-                                                        UIButton *_btSubmit;
                                                         UITableView *_tbvData;
-                                                     
-                                                        UIImageView *_background;
-                                            NSMutableArray *_lstData;
+                                                        NSMutableArray *_lstData;
+                                                        dispatch_queue_t _queue;
+                                                        CGRect _frameScan;
 }
 
 #if HAS_AVFF

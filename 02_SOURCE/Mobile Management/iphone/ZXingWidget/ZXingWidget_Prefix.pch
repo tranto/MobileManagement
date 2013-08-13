@@ -18,4 +18,7 @@
 #define MSCREEN [UIScreen mainScreen]
 #define WIDTH_MSCREEN [[UIScreen mainScreen] bounds].size.width
 #define HEIGHT_MSCREEN [[UIScreen mainScreen] bounds].size.height
-#define DELAY_SCAN 1.0f
+#define DELAY_SCAN 2.0f
+
+
+

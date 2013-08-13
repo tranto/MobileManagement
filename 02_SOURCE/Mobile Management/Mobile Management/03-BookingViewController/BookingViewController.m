@@ -112,7 +112,7 @@
 }
 #pragma mark - show DatePicker
 - (IBAction)showDatePicker:(id)sender {
-    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 400, 300, 400)];
+    UIDatePicker *datePicker = [[[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 400, 300, 400)] autorelease];
     datePicker.datePickerMode = UIDatePickerModeTime;
     [self.view addSubview:datePicker];
 }

@@ -41,7 +41,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)goToScan:(id)sender {
-    ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
+    ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:nil showCancel:YES OneDMode:NO];
     MultiFormatReader* qrcodeReader = [[MultiFormatReader alloc] init];
     NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
     [qrcodeReader release];
